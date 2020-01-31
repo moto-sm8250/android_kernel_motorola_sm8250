@@ -67,7 +67,7 @@ static void hb_input_callback(struct work_struct *unused) {
 
 static int input_dev_filter(struct input_dev *dev) {
 
-	if (strstr(dev->name, "uinput-fpc")) {
+	if (strstr(dev->name, "uinput-egis")) {
 		return 0;
 	} else {
 		return 1;
@@ -95,7 +95,7 @@ static int hb_input_connect(struct input_handler *handler,
 	if (rc) {
 		goto err_input_register_handle;
 	}
-	
+
 	rc = input_open_device(handle);
 	if (rc) {
 		goto err_input_open_device;
@@ -110,17 +110,17 @@ err_input_register_handle:
 	return rc;
 }
 
-static bool hb_input_filter(struct input_handle *handle, unsigned int type, 
+static bool hb_input_filter(struct input_handle *handle, unsigned int type,
 						unsigned int code, int value)
 {
 	if (type != EV_KEY) {
 		return false;
 	}
-    
+
     if (value != 1){
         return false;
     }
-		
+
 	switch (code) {
         case FPS_ONENAV_TAP:
         case FPS_ONENAV_HOLD:
@@ -174,7 +174,7 @@ static ssize_t hb_enable_store(struct device *dev,
 	sscanf(buf, "%d ", &hb_data.enable);
 	if (hb_data.enable < 0 || hb_data.enable > 1)
 		hb_data.enable = 0;
-		
+
 	return count;
 }
 
@@ -197,7 +197,7 @@ static ssize_t hb_haptic_store(struct device *dev,
 	sscanf(buf, "%d ", &hb_data.haptic);
 	if (hb_data.haptic < 0 || hb_data.haptic > 1)
 		hb_data.haptic = 0;
-		
+
 	return count;
 }
 
@@ -372,7 +372,7 @@ static ssize_t hb_haptic_off_store(struct device *dev,
 	sscanf(buf, "%d ", &hb_data.haptic_off);
 	if (hb_data.haptic_off < 0 || hb_data.haptic_off > 1)
 		hb_data.haptic_off = 0;
-		
+
 	return count;
 }
 
@@ -395,7 +395,7 @@ static ssize_t hb_proximity_check_off_store(struct device *dev,
 	sscanf(buf, "%d ", &hb_data.proximity_check_off);
 	if (hb_data.proximity_check_off < 0 || hb_data.proximity_check_off > 1)
 		hb_data.proximity_check_off = 0;
-		
+
 	return count;
 }
 
