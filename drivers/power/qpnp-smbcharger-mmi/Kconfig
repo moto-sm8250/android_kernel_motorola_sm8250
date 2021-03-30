@@ -7,3 +7,9 @@ config QPNP_SMBCHARGER_MMI
 
          This driver can also be built as a module.  If so, the module
          will be called qpnp_smbcharger_mmi.
+
+config PD_CHARGER_MMI
+	bool "PD CHARGER MMI"
+	default n
+	help
+	 Say Y here if your device supports Type-C Power Delivery
