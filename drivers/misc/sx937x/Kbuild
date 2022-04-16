@@ -1,0 +1,18 @@
+# add -Wall to try to catch everything we can.
+EXTRA_CFLAGS += -Wall
+EXTRA_CFLAGS += -I$(srctree)/drivers/base
+
+ifneq ($(filter m y,$(CONFIG_SX937X_USB_CAL)),)
+	EXTRA_CFLAGS += -DCONFIG_CAPSENSE_USB_CAL
+endif
+
+ifneq ($(filter m y,$(CONFIG_SX937X_POWER_SUPPLY_ONLINE)),)
+	EXTRA_CFLAGS += -DCONFIG_USE_POWER_SUPPLY_ONLINE
+endif
+
+ifneq ($(filter m y,$(CONFIG_SX937X_FLIP_CAL)),)
+	EXTRA_CFLAGS += -DCONFIG_CAPSENSE_FLIP_CAL
+endif
+
+obj-$(CONFIG_SARSENSOR_SX937X) += sx937x_sar.o
+

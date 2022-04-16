@@ -80,6 +80,6 @@ obj-y                           += qrc/
 
 obj-$(CONFIG_INPUT_AWINIC_HAPTIC) += awinic/
 obj-$(CONFIG_SARSENSOR_SX933X) += sx933x/
+obj-$(CONFIG_SARSENSOR_SX937X) += sx937x/
 obj-$(CONFIG_MOTO_UTAGS) += utag/
 obj-$(CONFIG_MMI_SYS_TEMP) += mmi_sys_temp/
-
