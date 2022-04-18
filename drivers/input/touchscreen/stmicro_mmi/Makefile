@@ -1,0 +1,30 @@
+stmicro_mmi-objs := fts.o fts_proc.o
+stmicro_mmi-objs += fts_lib/ftsCompensation.o
+stmicro_mmi-objs += fts_lib/ftsCore.o
+stmicro_mmi-objs += fts_lib/ftsError.o
+stmicro_mmi-objs += fts_lib/ftsFlash.o
+stmicro_mmi-objs += fts_lib/ftsFrame.o
+stmicro_mmi-objs += fts_lib/ftsGesture.o
+stmicro_mmi-objs += fts_lib/ftsIO.o
+stmicro_mmi-objs += fts_lib/ftsTest.o
+stmicro_mmi-objs += fts_lib/ftsTime.o
+stmicro_mmi-objs += fts_lib/ftsTool.o
+
+ifneq ($(filter m y,$(CONFIG_DRM_PANEL_NOTIFICATIONS)),)
+    ccflags-y += -DCONFIG_DRM_PANEL_NOTIFICATIONS
+endif
+
+ifneq ($(filter m y,$(CONFIG_ST_LIMIT_USE_SUPPLIER)),)
+    ccflags-y += -DCONFIG_ST_LIMIT_USE_SUPPLIER
+endif
+
+ifneq ($(filter m y,$(CONFIG_INPUT_TOUCHSCREEN_MMI)),)
+    ccflags-y += -DCONFIG_INPUT_TOUCHSCREEN_MMI
+    stmicro_mmi-objs += fts_mmi_class.o
+
+	ifneq ($(filter m y, $(CONFIG_TOUCHCLASS_MMI_MULTIWAY_UPDATE_FW)),)
+		ccflags-y += -DTS_MMI_TOUCH_MULTIWAY_UPDATE_FW
+	endif
+endif
+
+obj-$(CONFIG_TOUCHSCREEN_FTS_TS) := stmicro_mmi.o

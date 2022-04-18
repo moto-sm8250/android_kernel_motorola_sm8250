@@ -1358,4 +1358,7 @@ source "drivers/input/touchscreen/nt36xxx/Kconfig"
 source "drivers/input/touchscreen/nova_0flash_mmi/Kconfig"
 
 source "drivers/input/touchscreen/touchscreen_mmi/Kconfig"
+
+source "drivers/input/touchscreen/stmicro_mmi/Kconfig"
+
 endif

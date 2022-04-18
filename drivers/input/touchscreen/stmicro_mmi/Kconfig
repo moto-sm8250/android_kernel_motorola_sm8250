@@ -1,0 +1,17 @@
+#
+# STmicro TOUCH driver configuration
+#
+
+config TOUCHSCREEN_FTS_TS
+        tristate "STmicro Touchscreen"
+        depends on I2C
+        help
+          Say Y here if you want support for FTS touchscreen controllers.
+          If unsure, say N.
+
+          To compile this driver as a module, choose M here: the
+          module will be called stmicro_mmi.
+
+config ST_LIMIT_USE_SUPPLIER
+		bool ""
+		depends on TOUCHSCREEN_FTS_TS
